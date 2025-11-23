@@ -280,9 +280,7 @@ After seeding the database:
 - Email: `admin@foodies.com`
 - Password: `admin123`
 
-**User Account**:
-- Email: `john@example.com`
-- Password: `password123`
+
 
 ### Test the Application
 
@@ -342,8 +340,7 @@ Contributions, issues, and feature requests are welcome!
 
 ## 👨‍💻 Developer
 
-Built with ❤️ by Roshan Basnet
+Built by www.roshanbasnet07.com.np
 
 ---
-
-**Happy Coding! 🍕🍔🍣**
+******** Hope you like this thankyou *******
