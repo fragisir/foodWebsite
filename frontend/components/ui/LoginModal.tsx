@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { X } from 'lucide-react';
-import { useAuthStore } from '@/store/authStore';
-import { useRouter } from 'next/navigation';
-import toast from 'react-hot-toast';
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { X } from "lucide-react";
+import { useAuthStore } from "@/store/authStore";
+import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 
 interface LoginModalProps {
   isOpen: boolean;
@@ -13,12 +13,16 @@ interface LoginModalProps {
   onForgotPasswordClick: () => void;
 }
 
-export default function LoginModal({ isOpen, onClose, onForgotPasswordClick }: LoginModalProps) {
+export default function LoginModal({
+  isOpen,
+  onClose,
+  onForgotPasswordClick,
+}: LoginModalProps) {
   const [isLogin, setIsLogin] = useState(true);
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    password: '',
+    name: "",
+    email: "",
+    password: "",
   });
   const [isLoading, setIsLoading] = useState(false);
 
@@ -32,10 +36,10 @@ export default function LoginModal({ isOpen, onClose, onForgotPasswordClick }: L
     try {
       if (isLogin) {
         await login(formData.email, formData.password);
-        toast.success('Logged in successfully!');
+        toast.success("Logged in successfully!");
       } else {
         await register(formData.name, formData.email, formData.password);
-        toast.success('Account created successfully!');
+        toast.success("Account created successfully!");
       }
       onClose();
       router.refresh();
@@ -43,7 +47,7 @@ export default function LoginModal({ isOpen, onClose, onForgotPasswordClick }: L
       const errorMessage =
         error.response?.data?.message ||
         error.response?.data?.error ||
-        'Something went wrong';
+        "Something went wrong";
       toast.error(errorMessage);
     } finally {
       setIsLoading(false);
@@ -86,12 +90,12 @@ export default function LoginModal({ isOpen, onClose, onForgotPasswordClick }: L
               {/* Header */}
               <div className="bg-gradient-to-r from-orange-500 to-pink-600 p-8 text-white">
                 <h2 className="text-3xl font-bold mb-2">
-                  {isLogin ? 'Welcome Back!' : 'Join Foodies'}
+                  {isLogin ? "Welcome Back!" : " Foodies"}
                 </h2>
                 <p className="text-orange-100">
                   {isLogin
-                    ? 'Login to order your favorite food'
-                    : 'Create an account to get started'}
+                    ? "Login to order your favorite food"
+                    : "Create an account to get started"}
                 </p>
               </div>
 
@@ -110,7 +114,7 @@ export default function LoginModal({ isOpen, onClose, onForgotPasswordClick }: L
                         onChange={handleChange}
                         required={!isLogin}
                         className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent outline-none transition-all"
-                        placeholder="John Doe"
+                        placeholder="Your Name..."
                       />
                     </div>
                   )}
@@ -126,7 +130,7 @@ export default function LoginModal({ isOpen, onClose, onForgotPasswordClick }: L
                       onChange={handleChange}
                       required
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent outline-none transition-all"
-                      placeholder="john@example.com"
+                      placeholder="email@example.com"
                     />
                   </div>
 
@@ -168,10 +172,10 @@ export default function LoginModal({ isOpen, onClose, onForgotPasswordClick }: L
                     className="w-full py-3 bg-gradient-to-r from-orange-500 to-pink-600 text-white rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     {isLoading
-                      ? 'Please wait...'
+                      ? "Please wait..."
                       : isLogin
-                      ? 'Login'
-                      : 'Create Account'}
+                      ? "Login"
+                      : "Create Account"}
                   </motion.button>
                 </form>
 
@@ -180,12 +184,12 @@ export default function LoginModal({ isOpen, onClose, onForgotPasswordClick }: L
                   <p className="text-gray-600">
                     {isLogin
                       ? "Don't have an account? "
-                      : 'Already have an account? '}
+                      : "Already have an account? "}
                     <button
                       onClick={() => setIsLogin(!isLogin)}
                       className="text-orange-600 font-semibold hover:text-orange-700 transition-colors"
                     >
-                      {isLogin ? 'Sign Up' : 'Login'}
+                      {isLogin ? "Sign Up" : "Login"}
                     </button>
                   </p>
                 </div>

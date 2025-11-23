@@ -254,13 +254,27 @@ export default function AdminDashboard() {
               Top Selling Food Items
             </h2>
             <ResponsiveContainer width="100%" height={300}>
-              <BarChart data={topFoodItems}>
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="name" />
-                <YAxis />
-                <Tooltip />
-                <Legend />
-                <Bar dataKey="totalSold" fill="#F97316" name="Quantity Sold" />
+              <BarChart data={topFoodItems} layout="vertical" margin={{ top: 5, right: 30, left: 40, bottom: 5 }}>
+                <CartesianGrid strokeDasharray="3 3" horizontal={false} />
+                <XAxis type="number" />
+                <YAxis dataKey="name" type="category" width={100} tick={{ fontSize: 12 }} />
+                <Tooltip 
+                  cursor={{ fill: 'transparent' }}
+                  content={({ active, payload }) => {
+                    if (active && payload && payload.length) {
+                      return (
+                        <div className="bg-white p-3 border border-gray-100 shadow-lg rounded-lg">
+                          <p className="font-bold text-gray-900">{payload[0].payload.name}</p>
+                          <p className="text-orange-600 font-medium">
+                            Sold: {payload[0].value} units
+                          </p>
+                        </div>
+                      );
+                    }
+                    return null;
+                  }}
+                />
+                <Bar dataKey="totalSold" fill="#F97316" radius={[0, 4, 4, 0]} barSize={20} />
               </BarChart>
             </ResponsiveContainer>
           </div>

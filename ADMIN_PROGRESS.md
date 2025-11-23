@@ -186,7 +186,7 @@
 - **Tailwind CSS**: ✅ Modern styling
 - **React Hot Toast**: ✅ Toast notifications
 
----
+-
 
 ## 🔐 **Security**
 

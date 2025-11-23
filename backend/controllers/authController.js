@@ -152,9 +152,9 @@ export const forgotPassword = async (req, res, next) => {
     // Generate OTP
     const otp = Math.floor(100000 + Math.random() * 900000).toString();
 
-    // Set OTP and expiry (10 mins)
+    // Set OTP and expiry (2 minutes)
     user.resetPasswordOTP = otp;
-    user.resetPasswordExpire = Date.now() + 10 * 60 * 1000;
+    user.resetPasswordExpire = Date.now() + 2 * 60 * 1000;
 
     await user.save({ validateBeforeSave: false });
 
@@ -166,7 +166,7 @@ export const forgotPassword = async (req, res, next) => {
       
       <div class="otp-box">
         <div class="otp-code">${otp}</div>
-        <p style="margin-top: 10px; font-size: 14px; color: #666;">Valid for 10 minutes</p>
+        <p style="margin-top: 10px; font-size: 14px; color: #666;">Valid for 2 minutes</p>
       </div>
 
       <p style="font-size: 14px; color: #777;">If you didn't request this, please ignore this email.</p>

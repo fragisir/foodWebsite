@@ -126,7 +126,7 @@ function AdminFoodsContent() {
       price: food.price.toString(),
       image: food.image,
       category: food.category,
-      restaurant: typeof food.restaurant === 'object' ? food.restaurant._id : food.restaurant,
+      restaurant: (food.restaurant && typeof food.restaurant === 'object') ? food.restaurant._id : (food.restaurant || ''),
       isVegetarian: !!food.isVegetarian,
       isAvailable: food.available !== undefined ? food.available : true,
     });
@@ -136,7 +136,7 @@ function AdminFoodsContent() {
   const filteredFoods = foods.filter((food) => {
     const matchesSearch = food.name.toLowerCase().includes(searchQuery.toLowerCase());
     const matchesRestaurant = !filterRestaurant ||
-      (typeof food.restaurant === 'object' && food.restaurant._id === filterRestaurant);
+      (food.restaurant && typeof food.restaurant === 'object' && food.restaurant._id === filterRestaurant);
     return matchesSearch && matchesRestaurant;
   });
 
@@ -211,7 +211,7 @@ function AdminFoodsContent() {
                 <div className="p-4">
                   <h3 className="text-lg font-bold text-gray-900 mb-1">{food.name}</h3>
                   <p className="text-xs text-gray-500 mb-2 line-clamp-2">
-                    {typeof food.restaurant === 'object' ? food.restaurant.name : 'Unknown'}
+                    {food.restaurant && typeof food.restaurant === 'object' ? food.restaurant.name : 'Unknown'}
                   </p>
                   <p className="text-sm text-gray-600 mb-2 line-clamp-2">{food.description}</p>
                   <div className="flex items-center justify-between mb-3">

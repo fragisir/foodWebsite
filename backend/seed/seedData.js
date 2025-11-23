@@ -358,8 +358,8 @@ const importData = async () => {
 
     // Create a sample regular user
     await User.create({
-      name: 'John Doe',
-      email: 'john@example.com',
+      name: 'roshan',
+      email: 'roshan@gmail.com',
       password: 'password123',
       phone: '555-0123',
       address: {
@@ -379,7 +379,7 @@ const importData = async () => {
     console.log('   Password: admin123');
     console.log('');
     console.log('📧 User credentials:');
-    console.log('   Email: john@example.com');
+    console.log('   Email: roshan@gmail.com');
     console.log('   Password: password123');
     console.log('');
 
